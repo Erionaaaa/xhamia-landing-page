@@ -119,7 +119,17 @@ async function fetchPrayerTimes() {
   };
 
   if (container) container.innerHTML = "";
-  if (heroRow) heroRow.innerHTML = "";
+  if (heroRow) {
+    heroRow.innerHTML = "";
+    // Animate hero board when times load
+    const board = document.querySelector(".hero-prayer-board");
+    if (board) {
+      // trigger reflow then add visible class via CSS utility
+      requestAnimationFrame(() => {
+        board.classList.add("reveal-visible");
+      });
+    }
+  }
 
   PRAYERS.forEach(({ key, label, icon }) => {
     const time = timings[key];
@@ -255,5 +265,23 @@ document.addEventListener("DOMContentLoaded", () => {
   enableSmoothScrolling();
   setupMobileNav();
   setCurrentYear();
+
+  // Simple scroll reveal for lecture & ayah cards
+  const revealEls = document.querySelectorAll(".lecture-card, .ayah-card");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("reveal-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+    }
+  );
+
+  revealEls.forEach((el) => observer.observe(el));
 });
 

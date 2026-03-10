@@ -244,6 +244,11 @@ section {
     0 28px 70px rgba(0, 0, 0, 0.75),
     0 0 0 1px rgba(0, 0, 0, 0.45);
   backdrop-filter: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
 }
 
 @media (min-width: 768px) {
@@ -295,6 +300,10 @@ section {
   text-align: center;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.75);
   flex: 1 1 90px;
+  transition:
+    transform 0.25s ease-out,
+    box-shadow 0.25s ease-out,
+    background 0.25s ease-out;
 }
 
 .hero-prayer-icon {
@@ -309,6 +318,13 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.18);
   font-size: 1rem;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.8);
+}
+
+.hero-prayer-item:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.9);
+  background: radial-gradient(circle at top, rgba(212, 175, 55, 0.55), transparent 70%),
+    rgba(6, 18, 13, 0.92);
 }
 
 .hero-prayer-name {
@@ -463,6 +479,12 @@ section {
   display: flex;
   flex-direction: column;
   height: 100%;
+  transform: translateY(16px);
+  opacity: 0;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.35s ease-out,
+    box-shadow 0.25s ease-out;
 }
 
 .lecture-image-wrapper {
@@ -499,6 +521,11 @@ section {
   margin: 0 1.2rem 1.2rem;
   color: #d6e3dc;
   font-size: 0.95rem;
+}
+
+.lecture-card:hover {
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.96);
+  transform: translateY(-6px) scale(1.02);
 }
 
 .ayahs {
@@ -538,6 +565,12 @@ section {
   background: rgba(4, 18, 13, 0.96);
   border: 1px solid rgba(212, 175, 55, 0.28);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.35s ease-out,
+    box-shadow 0.25s ease-out;
 }
 
 .ayah-ar {
@@ -559,6 +592,17 @@ section {
 .ayah-tran {
   color: #cfdad4;
   font-size: 0.9rem;
+}
+
+.ayah-card:hover {
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.96);
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* Utility class for scroll animations */
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .contact {
