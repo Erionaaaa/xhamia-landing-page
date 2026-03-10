@@ -253,6 +253,30 @@ function enableSmoothScrolling() {
   });
 }
 
+function setupMobileNav() {
+  const header = document.querySelector(".nav");
+  const toggle = document.querySelector(".nav-toggle");
+  const links = document.querySelectorAll(".nav-links a");
+
+  if (!header || !toggle) return;
+
+  const closeMenu = () => {
+    header.classList.remove("nav-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  toggle.addEventListener("click", () => {
+    const isOpen = header.classList.toggle("nav-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      closeMenu();
+    });
+  });
+}
+
 function setCurrentYear() {
   const yearEl = document.getElementById("year");
   if (yearEl) {
@@ -263,6 +287,7 @@ function setCurrentYear() {
 document.addEventListener("DOMContentLoaded", () => {
   fetchPrayerTimes();
   enableSmoothScrolling();
+  setupMobileNav();
   setCurrentYear();
 });
 
