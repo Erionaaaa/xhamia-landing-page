@@ -108,9 +108,11 @@ async function fetchPrayerTimes() {
   const heroRow = document.getElementById("heroPrayerRow");
   const heroDateEl = document.getElementById("heroPrayerDate");
 
-  if (!container) return;
+  if (!container && !heroRow) return;
 
-  container.innerHTML = "<p>Po ngarkohen oraret e namazit...</p>";
+  if (container) {
+    container.innerHTML = "<p>Po ngarkohen oraret e namazit...</p>";
+  }
   if (heroRow) {
     heroRow.innerHTML = "<p>Po ngarkohen oraret...</p>";
   }
@@ -134,33 +136,33 @@ async function fetchPrayerTimes() {
     const dateReadable = data.data.date.readable;
     const hmDate = data.data.date.hijri;
 
-    container.innerHTML = "";
-    if (heroRow) {
-      heroRow.innerHTML = "";
-    }
+    if (container) container.innerHTML = "";
+    if (heroRow) heroRow.innerHTML = "";
 
     PRAYERS.forEach(({ key, label, icon }) => {
       const time = timings[key];
-      const card = document.createElement("article");
-      card.className = "prayer-card";
+      if (container) {
+        const card = document.createElement("article");
+        card.className = "prayer-card";
 
-      const labelEl = document.createElement("div");
-      labelEl.className = "prayer-label";
-      labelEl.textContent = "Koha";
+        const labelEl = document.createElement("div");
+        labelEl.className = "prayer-label";
+        labelEl.textContent = "Koha";
 
-      const nameEl = document.createElement("h3");
-      nameEl.className = "prayer-name";
-      nameEl.textContent = label;
+        const nameEl = document.createElement("h3");
+        nameEl.className = "prayer-name";
+        nameEl.textContent = label;
 
-      const timeEl = document.createElement("div");
-      timeEl.className = "prayer-time";
-      timeEl.textContent = time || "--:--";
+        const timeEl = document.createElement("div");
+        timeEl.className = "prayer-time";
+        timeEl.textContent = time || "--:--";
 
-      card.appendChild(nameEl);
-      card.appendChild(timeEl);
-      card.appendChild(labelEl);
+        card.appendChild(nameEl);
+        card.appendChild(timeEl);
+        card.appendChild(labelEl);
 
-      container.appendChild(card);
+        container.appendChild(card);
+      }
 
       if (heroRow) {
         const heroItem = document.createElement("div");
@@ -215,8 +217,10 @@ async function fetchPrayerTimes() {
     }
   } catch (error) {
     console.error(error);
-    container.innerHTML =
-      '<p class="error">Nuk arritëm të marrim oraret e namazit. Ju lutem provoni përsëri më vonë.</p>';
+    if (container) {
+      container.innerHTML =
+        '<p class="error">Nuk arritëm të marrim oraret e namazit. Ju lutem provoni përsëri më vonë.</p>';
+    }
     if (heroRow) {
       heroRow.innerHTML =
         '<p class="error">Orari i namazit nuk u ngarkua. Ju lutem provoni më vonë.</p>';
