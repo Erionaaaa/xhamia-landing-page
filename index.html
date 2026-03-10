@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xhamia Mati 1</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="nav" id="kryefaqja">
+    <div class="nav-inner">
+      <a class="logo" href="#kryefaqja" aria-label="Kthehu te kryefaqja">
+        <img src="ffoto/Xhamia Mati 1 Logo.png" alt="Logo Xhamia Mati 1" class="logo-img" />
+        <span class="logo-text">Xhamia Mati 1</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigimi">
+        <a href="#kryefaqja" class="nav-link">Kryefaqja</a>
+        <a href="#orari" class="nav-link">Orari</a>
+        <a href="#ligjerata" class="nav-link">Ligjërata</a>
+        <a href="#kontakt" class="nav-link">Kontakt</a>
+      </nav>
+      <a class="nav-cta" href="#orari">Orari sot</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-overlay">
+      <aside class="hero-prayer-board">
+        <div class="hero-prayer-header">
+          <span class="hero-prayer-title">Oret e Namazit</span>
+          <span class="hero-prayer-subtitle">Prishtinë &middot; sot</span>
+        </div>
+        <div id="heroPrayerRow" class="hero-prayer-row">
+          <!-- Mbushen automatikisht nga JavaScript -->
+        </div>
+        <p id="heroPrayerStatus" class="hero-prayer-status"></p>
+        <p id="heroPrayerDate" class="hero-prayer-date"></p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="prayers" id="orari">
+    <h2>Orari i Namazit për sot</h2>
+    <p class="prayers-subtitle">Prishtinë, Kosovë &middot; të dhënat nga Aladhan API</p>
+    <div id="prayerTimes" class="prayer-cards"></div>
+    <p id="prayerDate" class="prayer-date"></p>
+  </section>
+
+  <section class="lectures" id="ligjerata">
+    <h2>Ligjërata &amp; Mësime</h2>
+    <p class="lectures-subtitle">
+      Aktivitetet kryesore të xhamisë: ligjërata, mësime, donacione dhe programe komunitare.
+    </p>
+    <div class="lecture-grid">
+      <article class="lecture-card">
+        <div class="lecture-image-wrapper">
+          <img src="ffoto/DJI_20260308192435_0563_D.JPG" alt="Ligjërata 1 - foto nga galeria" />
+        </div>
+        <h3>Ligjërata Fetare</h3>
+        <p>Shembull ligjëratash javore mbi akiden, ahlakun dhe jetën e përditshme.</p>
+      </article>
+      <article class="lecture-card">
+        <div class="lecture-image-wrapper">
+          <img src="ffoto/donation.webp" alt="Donacione &amp; vakëfe - foto" />
+        </div>
+        <h3>Donacione &amp; Vakëfe</h3>
+        <p>Mundësia për të ndihmuar xhaminë dhe familjet në nevojë me sadaka dhe kontribute.</p>
+      </article>
+      <article class="lecture-card">
+        <div class="lecture-image-wrapper">
+          <img src="ffoto/falja e namazit.jpg" alt="Falja e namazit - foto" />
+        </div>
+        <h3>Falja e Namazit</h3>
+        <p>Mësime praktike për rregullat e namazit, abdesit dhe drejtshkrimin e sureve.</p>
+      </article>
+      <article class="lecture-card">
+        <div class="lecture-image-wrapper">
+          <img src="ffoto/kurse per femije islam.jpg" alt="Kurse për fëmijë - foto" />
+        </div>
+        <h3>Kurse për Fëmijë</h3>
+        <p>Mësim i Kur’anit, ahlakut dhe historive pejgamberike për fëmijët e lagjes.</p>
+      </article>
+      <article class="lecture-card">
+        <div class="lecture-image-wrapper">
+          <img src="ffoto/rinia ne islam.jpg" alt="Rinia dhe programet - foto" />
+        </div>
+        <h3>Rinia &amp; Programet</h3>
+        <p>Takime të rregullta me të rinjtë, biseda motivuese dhe aktivitete sportive.</p>
+      </article>
+      <article class="lecture-card">
+        <div class="lecture-image-wrapper">
+          <img src="ffoto/aktivitetet ne xhami.jpg" alt="Aktivitetet komunitare - foto" />
+        </div>
+        <h3>Aktivitete Komunitare</h3>
+        <p>Organizim i iftareve, vizita tek të sëmurët dhe projekte humanitare.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt">
+    <h2>Kontakt &amp; Vendndodhja</h2>
+    <p>Mirësevini në xhaminë tonë për namazet ditore, xhumanë dhe aktivitetet e komunitetit.</p>
+    <div class="contact-grid">
+      <div class="contact-photo contact-photo-left">
+        <img src="ffoto/fotokontakti.JPG" alt="Xhamia Mati 1" />
+      </div>
+      <div>
+        <h3>Adresa</h3>
+        <p>Prishtinë, Kosovë</p>
+        <a
+          class="map-link"
+          href="https://www.google.com/maps?um=1&ie=UTF-8&fb=1&sa=X&geocode=Kfdh973UnlQTMUc_ZGR0yLWK&daddr=M54Q%2BM3J,+Shaqir+Ingrishta,+Prishtina+10000"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hape në Google Maps
+        </a>
+      </div>
+      <div>
+        <h3>Kontakti</h3>
+        <p>Tel: +383 43 723 623</p>
+        <p>Email: info@xhamia-example.com</p>
+      </div>
+      <div class="contact-form-wrapper">
+        <h3>Na shkruani</h3>
+        <form
+          class="contact-form"
+          action="mailto:wordpres.illyrian@gmail.com"
+          method="post"
+          enctype="text/plain"
+        >
+          <div class="form-row">
+            <label for="emri">Emri dhe mbiemri</label>
+            <input type="text" id="emri" name="Emri" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required />
+          </div>
+          <div class="form-row">
+            <label for="mesazhi">Mesazhi</label>
+            <textarea id="mesazhi" name="Mesazhi" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="contact-submit">Dërgo mesazhin</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="ffoto/Xhamia Mati 1 Logo.png" alt="Logo Xhamia Mati 1" class="footer-logo-img" />
+          <div>
+            <div class="footer-title">Xhamia Mati 1</div>
+            <div class="footer-subtitle">Prishtinë, Kosovë</div>
+          </div>
+        </div>
+        <p class="footer-text">
+          Orari i namazit dhe aktivitetet e komunitetit, të organizuara në një vend.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Faqet</h3>
+        <a href="#kryefaqja">Kryefaqja</a>
+        <a href="#orari">Orari</a>
+        <a href="#ligjerata">Ligjërata</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Kontakt</h3>
+        <p>Tel: +383 43 723 623
+        </p>
+        <p>Email: info@xhamia-example.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> Xhamia Mati 1. Të gjitha të drejtat e rezervuara.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+body{
+margin:0;
+font-family:Arial;
+background:#0c1f18;
+color:white;
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+padding:20px 40px;
+background:#07140f;
+}
+
+.nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.hero{
+text-align:center;
+padding:120px 20px;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:10px;
+}
+
+.hero button{
+padding:14px 30px;
+background:#d4af37;
+border:none;
+border-radius:30px;
+cursor:pointer;
+}
+
+.prayers{
+padding:80px 20px;
+text-align:center;
+}
+
+.prayer{
+background:#13261f;
+padding:15px;
+margin:10px auto;
+max-width:300px;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+}
