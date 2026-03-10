@@ -108,126 +108,92 @@ async function fetchPrayerTimes() {
   const heroRow = document.getElementById("heroPrayerRow");
   const heroDateEl = document.getElementById("heroPrayerDate");
 
-  if (!container && !heroRow) return;
+  // Orari manual për Kosovë (Prishtinë), sipas takvimit
+  const timings = {
+    Fajr: "04:18", // Sabahu
+    Sunrise: "05:51",
+    Dhuhr: "11:50", // Dreka
+    Asr: "15:06", // Ikindia
+    Maghrib: "17:44", // Akshami
+    Isha: "19:15", // Jacia
+  };
 
-  if (container) {
-    container.innerHTML = "<p>Po ngarkohen oraret e namazit...</p>";
-  }
-  if (heroRow) {
-    heroRow.innerHTML = "<p>Po ngarkohen oraret...</p>";
-  }
+  if (container) container.innerHTML = "";
+  if (heroRow) heroRow.innerHTML = "";
 
-  try {
-    const response = await fetch(
-      "https://api.aladhan.com/v1/timingsByCity?city=Prishtina&country=Kosovo&method=13&school=1"
-    );
-
-    if (!response.ok) {
-      throw new Error("Përgjigje jo e vlefshme nga serveri");
-    }
-
-    const data = await response.json();
-
-    if (!data || data.code !== 200 || !data.data) {
-      throw new Error("Nuk u morën të dhënat e pritshme");
-    }
-
-    const timings = data.data.timings;
-    const dateReadable = data.data.date.readable;
-    const hmDate = data.data.date.hijri;
-
-    if (container) container.innerHTML = "";
-    if (heroRow) heroRow.innerHTML = "";
-
-    PRAYERS.forEach(({ key, label, icon }) => {
-      const time = timings[key];
-      if (container) {
-        const card = document.createElement("article");
-        card.className = "prayer-card";
-
-        const labelEl = document.createElement("div");
-        labelEl.className = "prayer-label";
-        labelEl.textContent = "Koha";
-
-        const nameEl = document.createElement("h3");
-        nameEl.className = "prayer-name";
-        nameEl.textContent = label;
-
-        const timeEl = document.createElement("div");
-        timeEl.className = "prayer-time";
-        timeEl.textContent = time || "--:--";
-
-        card.appendChild(nameEl);
-        card.appendChild(timeEl);
-        card.appendChild(labelEl);
-
-        container.appendChild(card);
-      }
-
-      if (heroRow) {
-        const heroItem = document.createElement("div");
-        heroItem.className = "hero-prayer-item";
-
-        const heroIcon = document.createElement("span");
-        heroIcon.className = "hero-prayer-icon";
-        heroIcon.textContent = icon || "";
-
-        const heroName = document.createElement("span");
-        heroName.className = "hero-prayer-name";
-        heroName.textContent = label;
-
-        const heroTime = document.createElement("span");
-        heroTime.className = "hero-prayer-time";
-        heroTime.textContent = time || "--:--";
-
-        heroItem.appendChild(heroIcon);
-        heroItem.appendChild(heroName);
-        heroItem.appendChild(heroTime);
-        heroRow.appendChild(heroItem);
-      }
-    });
-
-    startHeroCountdown(timings);
-
-    if (dateEl) {
-      const monthMapSq = {
-        Jan: "janar",
-        Feb: "shkurt",
-        Mar: "mars",
-        Apr: "prill",
-        May: "maj",
-        Jun: "qershor",
-        Jul: "korrik",
-        Aug: "gusht",
-        Sep: "shtator",
-        Oct: "tetor",
-        Nov: "nëntor",
-        Dec: "dhjetor",
-      };
-
-      const [day, engMonth, year] = dateReadable.split(" ");
-      const monthSq = monthMapSq[engMonth] || engMonth;
-
-      const hijriText = `${hmDate.day}.${hmDate.month.number}.${hmDate.year} hixhri`;
-
-      dateEl.textContent = `${day} ${monthSq} ${year} · ${hijriText}`;
-      if (heroDateEl) {
-        heroDateEl.textContent = `${day} ${monthSq} ${year} · ${hijriText}`;
-      }
-    }
-  } catch (error) {
-    console.error(error);
+  PRAYERS.forEach(({ key, label, icon }) => {
+    const time = timings[key];
     if (container) {
-      container.innerHTML =
-        '<p class="error">Nuk arritëm të marrim oraret e namazit. Ju lutem provoni përsëri më vonë.</p>';
+      const card = document.createElement("article");
+      card.className = "prayer-card";
+
+      const labelEl = document.createElement("div");
+      labelEl.className = "prayer-label";
+      labelEl.textContent = "Koha";
+
+      const nameEl = document.createElement("h3");
+      nameEl.className = "prayer-name";
+      nameEl.textContent = label;
+
+      const timeEl = document.createElement("div");
+      timeEl.className = "prayer-time";
+      timeEl.textContent = time || "--:--";
+
+      card.appendChild(nameEl);
+      card.appendChild(timeEl);
+      card.appendChild(labelEl);
+
+      container.appendChild(card);
     }
+
     if (heroRow) {
-      heroRow.innerHTML =
-        '<p class="error">Orari i namazit nuk u ngarkua. Ju lutem provoni më vonë.</p>';
+      const heroItem = document.createElement("div");
+      heroItem.className = "hero-prayer-item";
+
+      const heroIcon = document.createElement("span");
+      heroIcon.className = "hero-prayer-icon";
+      heroIcon.textContent = icon || "";
+
+      const heroName = document.createElement("span");
+      heroName.className = "hero-prayer-name";
+      heroName.textContent = label;
+
+      const heroTime = document.createElement("span");
+      heroTime.className = "hero-prayer-time";
+      heroTime.textContent = time || "--:--";
+
+      heroItem.appendChild(heroIcon);
+      heroItem.appendChild(heroName);
+      heroItem.appendChild(heroTime);
+      heroRow.appendChild(heroItem);
     }
-    const statusEl = document.getElementById("heroPrayerStatus");
-    if (statusEl) statusEl.textContent = "";
-  }
+  });
+
+  startHeroCountdown(timings);
+
+  const monthMapSq = [
+    "janar",
+    "shkurt",
+    "mars",
+    "prill",
+    "maj",
+    "qershor",
+    "korrik",
+    "gusht",
+    "shtator",
+    "tetor",
+    "nëntor",
+    "dhjetor",
+  ];
+
+  const now = new Date();
+  const day = String(now.getDate()).padStart(2, "0");
+  const monthSq = monthMapSq[now.getMonth()];
+  const year = now.getFullYear();
+  const dateText = `${day} ${monthSq} ${year}`;
+
+  if (dateEl) dateEl.textContent = dateText;
+  if (heroDateEl) heroDateEl.textContent = dateText;
 }
 
 function enableSmoothScrolling() {
